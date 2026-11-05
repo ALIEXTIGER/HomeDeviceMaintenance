@@ -1,42 +1,23 @@
-using System;
 using HomeDeviceMaintenance.Abstracts;
 
 namespace HomeDeviceMaintenance.Models
 {
+    // فئة الثلاجة ترث من الفئة الأساسية للجهاز
     public class Refrigerator : HomeDevice
     {
-        // متغير بسيط لتكلفة الغاز
-        private double gasCost;
+        // إضافة متغير خاص بالثلاجات مثل تكلفة شحن الغاز
+        private double _gasRefillCost;
 
-        // الخاصية الخاصة بتكلفة الغاز
-        public double GasCost
+        public Refrigerator(string serialNumber, string brand, double baseRepairCost, double gasRefillCost)
+            : base(serialNumber, brand, baseRepairCost)
         {
-            get { return gasCost; }
-            set { gasCost = value; }
+            _gasRefillCost = gasRefillCost;
         }
 
-        // المشيد العادي
-        public Refrigerator(string serialNumber, string model, double baseCost, double gasCost) 
-            : base(serialNumber, model, baseCost)
-        {
-            this.gasCost = gasCost;
-        }
-
-        // دالة حساب التكلفة بطريقة واضحة ومباشرة
+        // حساب التكلفة الكلية للثلاجة: التكلفة الأساسية مضافاً إليها تكلفة الغاز
         public override double CalculateTotalRepairCost()
         {
-            double total = BaseRepairCost + gasCost;
-            return total;
-        }
-
-        public override void StartDiagnosis()
-        {
-            Console.WriteLine("بدء فحص الثلاجة...");
-        }
-
-        public override void CompleteRepair()
-        {
-            Console.WriteLine("تم الانتهاء من إصلاح الثلاجة.");
+            return BaseRepairCost + _gasRefillCost;
         }
     }
 }
