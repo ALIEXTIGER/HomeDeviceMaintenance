@@ -1,6 +1,7 @@
 using System;
+using HomeDeviceMaintenance.Abstracts;
 
-namespace HomeApplianceRepairCenter.Models
+namespace HomeDeviceMaintenance.Models
 {
     public class Refrigerator : HomeDevice
     {
@@ -24,7 +25,7 @@ namespace HomeApplianceRepairCenter.Models
         // دالة حساب التكلفة بطريقة واضحة ومباشرة
         public override double CalculateTotalRepairCost()
         {
-            double total = BaseCost + gasCost;
+            double total = BaseRepairCost + gasCost;
             return total;
         }
 

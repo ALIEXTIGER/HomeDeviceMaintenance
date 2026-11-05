@@ -12,7 +12,9 @@ namespace HomeDeviceMaintenance.Abstracts
         private string _status;
         private double _baseRepairCost;
 
+        public static int TotalDevices { get; private set; } //اجمالي عدد الاجهزة التي تم انشاؤها
         // خصائص الوصول إلى البيانات مع تطبيق شروط التحقق
+       
         public string SerialNumber => _serialNumber; 
         
         public string Brand
@@ -38,8 +40,9 @@ namespace HomeDeviceMaintenance.Abstracts
         {
             _serialNumber = serialNumber;
             _brand = brand;
-            _baseRepairCost = baseRepairCost;
+            BaseRepairCost = baseRepairCost;
             _status = "Under Maintenance"; // الحالة الافتراضية للجهاز الجديد
+            TotalDevices++;
         }
 
         // حساب تكلفة الإصلاح الإجمالية - تُحدد طريقة الحساب لاحقاً حسب نوع كل جهاز

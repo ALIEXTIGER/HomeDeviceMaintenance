@@ -1,6 +1,7 @@
 using System;
+using HomeDeviceMaintenance.Abstracts;
 
-namespace HomeApplianceRepairCenter.Models
+namespace HomeDeviceMaintenance.Models
 {
     public class AirConditioner : HomeDevice
     {
@@ -24,7 +25,7 @@ namespace HomeApplianceRepairCenter.Models
         // دالة حساب التكلفة بطريقة واضحة ومباشرة
         public override double CalculateTotalRepairCost()
         {
-            double total = BaseCost + cleaningCost;
+            double total = BaseRepairCost + cleaningCost;
             return total;
         }
 
