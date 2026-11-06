@@ -12,7 +12,11 @@ namespace HomeDeviceMaintenance
         static void Main(string[] args)
         {
             Console.WriteLine("--- نظام إدارة مركز صيانة الأجهزة المنزلية ---");
-
+            // اختبار فئة التحقق من البيانات
+            if (!DeviceValidator.IsValidSerial("REF123"))
+           {
+            Console.WriteLine("Invalid Serial Number");
+           }
             // إنشاء قائمة لتجميع الأجهزة المختلفة وتطبيق تعدد الأشكال
             List<HomeDevice> deviceList = new List<HomeDevice>();
 
