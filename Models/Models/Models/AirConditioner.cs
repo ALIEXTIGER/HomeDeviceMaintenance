@@ -1,19 +1,41 @@
+using System;
 using HomeDeviceMaintenance.Abstracts;
 
 namespace HomeDeviceMaintenance.Models
 {
-    // فئة المكيف ترث من الفئة الأساسية للجهاز
+    // فئة المكيف ترث من الفئة الأساسية للجهاز (تم التحديث والتحسين بواسطة الطالبة رقم 3)
     public class AirConditioner : HomeDevice
     {
-        public AirConditioner(string serialNumber, string brand, double baseRepairCost) 
-            : base(serialNumber, brand, baseRepairCost)
+        private double cleaningCost;
+
+        public double CleaningCost
         {
+            get { return cleaningCost; }
+            set { cleaningCost = value; }
         }
 
-        // حساب التكلفة للمكيف مع إضافة ضريبة صيانة الأجهزة المعقدة 15%
+        // المشيد المحدث ليقبل تكلفة التنظيف مع الحفاظ على البناء الأساسي
+        public AirConditioner(string serialNumber, string model, double baseCost, double cleaningCost) 
+            : base(serialNumber, model, baseCost)
+        {
+            this.cleaningCost = cleaningCost;
+        }
+
+        // حساب إجمالي تكلفة الإصلاح مع إضافة تكلفة التنظيف وضريبة الصيانة المعقدة
         public override double CalculateTotalRepairCost()
         {
-            return BaseRepairCost * 1.15;
+            double total = (BaseCost * 1.15) + cleaningCost;
+            return total;
+        }
+
+        public override void StartDiagnosis()
+        {
+            Console.WriteLine("بدء فحص المكيف...");
+        }
+
+        public override void CompleteRepair()
+        {
+            Console.WriteLine("تم الانتهاء من إصلاح المكيف.");
         }
     }
 }
