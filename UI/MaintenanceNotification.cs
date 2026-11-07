@@ -1,30 +1,29 @@
 using System;
+using HomeDeviceMaintenance.Abstracts;
 
 namespace HomeDeviceMaintenance.UI
 {
-    // 1. تعريف المفوض (Delegate) الذي يحدد شكل دالة التعامل مع الإشعار
-    public delegate void MaintenanceStatusHandler(string deviceName, string oldStatus, string newStatus);
+    // تعريف Delegate لإرسال إشعار عند تغيير حالة الجهاز
+    public delegate void StatusChangedHandler(
+        HomeDevice device,
+        string oldStatus,
+        string newStatus
+    );
 
     public class MaintenanceNotification
     {
-        // 2. بناءً على المفوض السابق (Event) تعريف الحدث
-        public event MaintenanceStatusHandler OnStatusChanged;
+        // الحدث الذي سيتم إطلاقه عند تغيير الحالة
+        public event StatusChangedHandler OnStatusChanged;
 
-        // 3. دالة تُستدعى لإطلاق الحدث وإرسال الإشعار
-        public void NotifyStatusChange(string deviceName, string oldStatus, string newStatus)
+        // تغيير حالة الجهاز وإطلاق الحدث
+        public void TriggerStatusChange(HomeDevice device, string newStatus)
         {
-            Console.WriteLine($"\n[نظام التنبيهات]: تم رصد تغيير في الجهاز البرمجي...");
+            string oldStatus = device.Status;
 
-            // التحقق من وجود مشتركين في الحدث قبل إطلاقه
-            if (OnStatusChanged != null)
-            {
-                OnStatusChanged(deviceName, oldStatus, newStatus);
-            }
-            else
-            {
-                // إذا لم يكن هناك مشتركين، نطبع الإشعار الافتراضي في الواجهة
-                Console.WriteLine($" (UI) إشعار تلقائي للواجهة :الجهاز [{deviceName}] تحول من حالة ({oldStatus}) إلى ({newStatus})");
-            }
+            device.UpdateStatus(newStatus);
+
+            // إطلاق الحدث للمشتركين
+            OnStatusChanged?.Invoke(device, oldStatus, newStatus);
         }
     }
 }
