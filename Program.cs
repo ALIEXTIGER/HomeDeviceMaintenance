@@ -23,7 +23,7 @@ namespace HomeDeviceMaintenance
             // إضافة عينات تجريبية من الأجهزة لضمان عمل النظام
             deviceList.Add(new Refrigerator("REF123", "LG", 100.0, 30.0));
             deviceList.Add(new WashingMachine("WASH456", "Samsung", 120.0, true));
-            deviceList.Add(new AirConditioner("AC789", "Gree", 150.0));
+           deviceList.Add(new AirConditioner("AC789", "Gree", 150.0, 25.0));
 
             // إعداد نظام الأحداث والإشعارات
             MaintenanceNotification notifier = new MaintenanceNotification();
