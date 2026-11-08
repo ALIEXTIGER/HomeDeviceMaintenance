@@ -70,5 +70,5 @@ public virtual void CompleteRepair()
 {
     Console.WriteLine($"تم إصلاح الجهاز {SerialNumber}");
 }
-   
+  } 
 }
