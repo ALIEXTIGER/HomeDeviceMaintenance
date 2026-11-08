@@ -24,7 +24,7 @@ namespace HomeDeviceMaintenance.Models
         // حساب إجمالي تكلفة الإصلاح مع إضافة تكلفة التنظيف وضريبة الصيانة المعقدة
         public override double CalculateTotalRepairCost()
         {
-            double total = (BaseCost * 1.15) + cleaningCost;
+            double total = (BaseRepairCost * 1.15) + CleaningCost;
             return total;
         }
 
