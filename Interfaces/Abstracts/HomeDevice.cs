@@ -59,5 +59,16 @@ namespace HomeDeviceMaintenance.Abstracts
         {
             _status = newStatus;
         }
-    }
+        // بدء عملية تشخيص الجهاز
+public virtual void StartDiagnosis()
+{
+    Console.WriteLine($"بدء تشخيص الجهاز {SerialNumber}");
+}
+
+// إنهاء عملية الإصلاح
+public virtual void CompleteRepair()
+{
+    Console.WriteLine($"تم إصلاح الجهاز {SerialNumber}");
+}
+   
 }
